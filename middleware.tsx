@@ -6,6 +6,7 @@ export function middleware(req: NextRequest) {
 
     // Validate token
     const isValid: boolean = validateToken(token); // Assume validateToken is a function that validates the token.
+    console.log('validateToken:: ', token);
 
     if (!isValid && req.nextUrl.pathname.startsWith('/dashboard')) {
         return NextResponse.redirect(new URL('/login', req.url));
@@ -15,6 +16,5 @@ export function middleware(req: NextRequest) {
 }
 
 function validateToken(token: any) {
-    console.log('validateToken:: ', token);
     return false;
 }
