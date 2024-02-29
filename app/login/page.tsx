@@ -1,8 +1,8 @@
 'use client'
 
+import {useState} from "react";
 import {useRouter} from 'next/navigation'
 import {login} from "@/lib/services/auth";
-import {useState} from "react";
 
 export default function Login() {
     const router = useRouter();
@@ -11,7 +11,6 @@ export default function Login() {
     console.log(router)
 
     const submitLoginForm = () => {
-        console.log('submitLoginForm:: ')
         login(username, password)
             .then(data => {
                 console.log('Login successful:', data)

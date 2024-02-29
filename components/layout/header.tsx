@@ -4,11 +4,15 @@ import React from 'react';
 import Link from "next/link";
 
 import {useRouter} from "next/navigation";
+import {logout} from "@/lib/services/auth";
 
 function Header(props: any) {
     const router = useRouter();
     const userLogout = () => {
-        router.push('/login')
+        logout().then(data => {
+            console.log('Logout successful:', data)
+            router.push('/login')
+        }).catch(error => console.error('Login failed:', error));
     }
 
     return (
