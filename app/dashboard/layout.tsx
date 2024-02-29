@@ -1,29 +1,16 @@
-'use client'
-
-import {useRouter} from "next/navigation";
+import Header from "@/components/layout/header";
 
 export default function DashboardLayout({children}: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  const router = useRouter();
-  const userLogout = () => {
-    router.push('/login')
-  }
 
-  return (
-    <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <nav>
-        <ul>
-          <li>Home</li>
-          <li>Dashboard</li>
-          <li>
-            <button type='button' onClick={() => userLogout()}>Logout</button>
-          </li>
-        </ul>
-      </nav>
-
-      {children}
-    </section>
-  )
+    return (
+        <>
+            {/* Include shared UI here e.g. a header or sidebar */}
+            <Header/>
+            <main className='py-4 px-4'>
+                {children}
+            </main>
+        </>
+    )
 }
