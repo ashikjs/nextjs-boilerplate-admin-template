@@ -1,20 +1,29 @@
-import {NextRequest, NextResponse} from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(req: NextRequest) {
-    // const token = req.cookies.get('token');
-    const token = req.cookies;
+// @utils
+import {isAuthenticated} from "@/lib/utils/auth";
 
-    // Validate token
-    const isValid: boolean = validateToken(token); // Assume validateToken is a function that validates the token.
-    console.log('validateToken:: ', token);
+export function middleware(request: NextRequest) {
+    const { pathname } = request.nextUrl;
+    console.log('Pathname:: ', pathname)
 
-    if (!isValid && req.nextUrl.pathname.startsWith('/dashboard')) {
-        return NextResponse.redirect(new URL('/login', req.url));
+    if (pathname.startsWith('/dashboard') && !isAuthenticated(request.cookies)) {
+        return NextResponse.redirect(new URL('/login', request.url));
     }
 
     return NextResponse.next();
 }
 
-function validateToken(token: any) {
-    return false;
+export const config = {
+    matcher: [
+        /*
+         * Match all request paths except for the ones starting with:
+         * - api (API routes)
+         * - _next/static (static files)
+         * - _next/image (image optimization files)
+         * - favicon.ico (favicon file)
+         */
+        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    ]
 }

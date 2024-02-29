@@ -1,3 +1,6 @@
+import {permanentRedirect} from "next/navigation";
+
 export default function Page() {
-    return <h1>Hello, Home page!</h1>
+  permanentRedirect('/dashboard')
+  return <div><p>Wrong page..</p></div>
 }

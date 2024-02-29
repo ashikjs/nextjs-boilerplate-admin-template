@@ -40,7 +40,7 @@ project/
 │   └── ...                      # Other component categorizations
 │ 
 │ 
-├── lib/                             # App directory for Next.js all all your pages (auto-routing) by page.jsx
+├── lib/                             # Lib
 │   ├── context                      # Custom React context
 │   ├── hooks/                       # Custom React hooks
 │   └── utils/                       # Utility functions and helpers
