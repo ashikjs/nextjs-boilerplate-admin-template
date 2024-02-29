@@ -21,7 +21,7 @@ This project is organized using the following directory structure:
 ```
 project/
 │
-├── app/                             # App directory for Next.js all all your pages (auto-routing) by page.jsx
+├── app/                             # App directory for Next.js all all your pages (auto-routing) by page.tsx
 │   │
 │   ├── dashboard/              # Dashboard-related pages
 │   │   ├── layout.tsx             # Dashboard layout component
