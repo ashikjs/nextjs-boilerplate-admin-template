@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --text-color: #111111;
   --body-background: #ffffff;
@@ -12,13 +8,4 @@
     --text-color: #ffffff;
     --body-background: #ffffff;
   }
-}
-
-body {
-  color: var(--text-color);
-  background: var(--body-background);
-}
-
-@layer utilities {
-  // utilities
 }
