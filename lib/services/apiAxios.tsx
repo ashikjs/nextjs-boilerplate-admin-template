@@ -1,13 +1,15 @@
 import axios from 'axios';
 
 // Creating an Axios instance
-const apiClient = axios.create({
-    baseURL: 'https://your.api.base.url',
+const apiAxios = axios.create({
+    baseURL: 'http://localhost:3030/',
+    // baseURL: 'https://node-express-auth-suite.vercel.app/',
+    withCredentials: true,
     // You can add default headers here
 });
 
 // Request Interceptor
-apiClient.interceptors.request.use(
+apiAxios.interceptors.request.use(
     config => {
         // Perform actions before the request is sent
         console.log(`Sending a ${config.method} request to ${config.url}...`);
@@ -17,6 +19,8 @@ apiClient.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+
+        config.headers['Content-Type'] = 'application/json';
 
         return config;
     },
@@ -28,7 +32,7 @@ apiClient.interceptors.request.use(
 );
 
 // Response Interceptor
-apiClient.interceptors.response.use(
+apiAxios.interceptors.response.use(
     response => {
         // Any status code that lies within the range of 2xx cause this function to trigger
         // Do something with response data
@@ -43,4 +47,4 @@ apiClient.interceptors.response.use(
     }
 );
 
-export default apiClient;
+export default apiAxios;

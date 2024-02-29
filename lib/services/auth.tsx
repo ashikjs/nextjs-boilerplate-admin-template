@@ -1,52 +1,35 @@
+import apiAxios from "@/lib/services/apiAxios";
+
 interface LoginResponse {
-  token: string;
-  error?: string;
+    token: string;
+    error?: string;
 }
+
 interface LogoutResponse {
-  error?: string;
+    error?: string;
 }
-// const URL: string = 'https://node-express-auth-suite.vercel.app/login';
-const URL: string = 'http://localhost:3030/';
+
 export async function login(username: string, password: string): Promise<LoginResponse> {
-  try {
-    const response = await fetch(URL + 'login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({username, password}),
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
-      // If the server response is not ok, throw an error with the status
-      throw new Error(`Login failed: ${response.status}`);
+    try {
+        const response = await apiAxios.post('/login', {
+            username,
+            password
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Login error:', error);
+        // Handle error here. With Axios, error handling can be more nuanced thanks to error.response
+        throw error;
     }
-
-    const data: LoginResponse = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Login error:', error);
-    throw error; // Re-throw the error to be handled by the caller
-  }
 }
 
 export async function logout(): Promise<LogoutResponse> {
-  try {
-    const response = await fetch(URL + 'logout', {
-      method: 'GET',
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
-      // If the server response is not ok, throw an error with the status
-      throw new Error(`Logout failed: ${response.status}`);
+    try {
+        const response = await apiAxios.get('logout');
+        return response.data;
+    } catch (error) {
+        // Axios encapsulates HTTP errors in the error object, making it easy to access the original response and status
+        console.error('Logout failed:', error);
+        throw error; // Re-throw the error to be handled by the caller
     }
-
-    const data: LoginResponse = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Logout failed:', error);
-    throw error; // Re-throw the error to be handled by the caller
-  }
 }
