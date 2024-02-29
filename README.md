@@ -43,6 +43,7 @@ project/
 ├── lib/                             # Lib
 │   ├── context                      # Custom React context
 │   ├── hooks/                       # Custom React hooks
+│   ├── services/                    # services React hooks
 │   └── utils/                       # Utility functions and helpers
 │
 │── styles/                      # Global styles, variables, theme configs
