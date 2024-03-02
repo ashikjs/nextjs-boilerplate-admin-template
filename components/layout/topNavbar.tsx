@@ -1,30 +1,28 @@
 'use client'
 
 import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
 
-import {Layout, Menu} from 'antd';
+import {Button, Layout, Menu} from 'antd';
+
 import {useRouter} from "next/navigation";
 import {logout} from "@/lib/services/auth";
+// @Images
+import logo from "@/public/images/logo.png"
+
 const {Header} = Layout;
 
-const items: any [] = [
+const items = [
   {
-    key: 1,
-    label: `Dashboard`,
+    key: 'dashboard',
+    label: (<Link href="/dashboard">Dashboard</Link>),
   },
   {
-    key: 2,
-    label: `User`,
+    key: 'dashboard/user',
+    label: (<Link href="/dashboard/user">User</Link>),
   },
-  {
-    key: 3,
-    label: `User-2`,
-  },
-  {
-    key: 4,
-    label: `User-3`,
-  },
-]
+];
 
 function TopNavbar(props: any) {
   const router = useRouter();
@@ -36,15 +34,20 @@ function TopNavbar(props: any) {
   }
 // () => userLogout()
   return (
-    <Header style={{display: 'flex', alignItems: 'center'}}>
-      <div className="demo-logo"/>
+    <Header style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+      <div className="demo-logo">
+        <Image src={logo} alt='Company logo' className='w-10' placeholder='blur'/>
+      </div>
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={['2']}
         items={items}
         style={{flex: 1, minWidth: 0}}
       />
+      <div className="user-logout">
+        Md Akram
+        <Button onClick={userLogout}>Logout</Button>
+      </div>
     </Header>
   );
 }
