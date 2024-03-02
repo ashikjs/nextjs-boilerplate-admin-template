@@ -6,8 +6,11 @@ import {BasicDataTableType} from "@/models/basicDataTableType";
 
 const {Column, ColumnGroup} = Table;
 
+type Props = {
+  datas: BasicDataTableType[]
+}
 
-const BasicTable: React.FC = ({datas}: any) => (
+const BasicTable: React.FC<Props> = ({datas}: Props) => (
   <Table dataSource={datas}>
     <ColumnGroup title="Name">
       <Column title="First Name" dataIndex="firstName" key="firstName"/>

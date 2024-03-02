@@ -2,6 +2,8 @@ import React from "react";
 
 import BasicTable from "@/components/tables/basicTable";
 import {BasicDataTableType} from "@/models/basicDataTableType";
+import Title from "antd/es/typography/Title";
+import AddUserFormModal from "@/components/forms/addUserFormModal";
 
 
 export default function Page() {
@@ -34,6 +36,15 @@ export default function Page() {
   ];
 
   return (
-    <BasicTable datas={datas}/>
+    <div className='p-4'>
+
+      <div className="flex justify-between items-center">
+        <Title level={2} className='mb-0'>User List</Title>
+        <AddUserFormModal/>
+      </div>
+
+      <BasicTable datas={datas}/>
+
+    </div>
   )
 }
