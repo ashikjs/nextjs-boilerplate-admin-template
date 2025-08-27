@@ -8,7 +8,6 @@ export default function Login() {
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    console.log(router)
 
     const submitLoginForm = () => {
         login(username, password)
